@@ -1,10 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <nav-bar></nav-bar>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <router-view />
+  <!-- <about-page></about-page> -->
+  
 </template>
+
+<script>
+// import AboutPage from "./modules/pokemon/pages/AboutPage.vue";
+
+// import NavBar from './modules/shared/components/NavBar'
+
+import { defineAsyncComponent } from "vue";
+
+
+export default {
+  name: 'App',
+  components: {
+    // AboutPage
+    NavBar : defineAsyncComponent( () => import( /* webpackChunkName: "NavBar" */ '@/modules/shared/components/NavBar' ) )//esto hay que definirlo como async component
+  }
+}
+</script>
 
 <style>
 #app {
@@ -13,18 +30,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+  margin-top: 60px;
 }
 </style>
